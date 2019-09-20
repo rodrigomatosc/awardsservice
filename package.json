@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "scheduler": "nodemon src/scheduler.js"
   },
   "dependencies": {
+    "bee-queue": "^1.2.2",
     "express": "^4.17.1",
     "pg": "^7.0.0",
     "pg-hstore": "^2.3.3",
+    "redis": "^2.8.0",
     "sequelize": "^5.18.4"
   },
   "devDependencies": {
