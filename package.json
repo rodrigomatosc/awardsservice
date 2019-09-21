@@ -5,11 +5,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
-    "scheduler": "nodemon src/scheduler.js"
+    "scheduler": "nodemon src/scheduler.js",
+    "queue": "nodemon src/processQueue.js"
   },
   "dependencies": {
     "bee-queue": "^1.2.2",
     "express": "^4.17.1",
+    "mongoose": "^5.7.1",
     "pg": "^7.0.0",
     "pg-hstore": "^2.3.3",
     "redis": "^2.8.0",
