@@ -1,11 +1,9 @@
 import Sequelize, { Model } from 'sequelize';
 
-class Monster extends Model {
+class KilledMonster extends Model {
   static init(sequelize) {
     super.init(
-      {
-        value: Sequelize.DOUBLE,
-      },
+      {},
       {
         sequelize,
       }
@@ -18,4 +16,4 @@ class Monster extends Model {
   }
 }
 
-export default Monster;
+export default KilledMonster;

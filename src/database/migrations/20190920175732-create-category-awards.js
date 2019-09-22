@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('categories_awards', {
+    return queryInterface.createTable('category_awards', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -29,6 +29,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('categories_awards');
+    return queryInterface.dropTable('category_awards');
   },
 };

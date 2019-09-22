@@ -1,10 +1,10 @@
 import Bee from 'bee-queue';
 import configRedis from '../config/redis';
-import killedMonsters from '../app/jobs/killedMonstersJob';
-import Deaths from '../app/jobs/DeathsJob';
-import CollectedCoins from '../app/jobs/CollectedCoinsJob';
+import DeathsJob from '../app/jobs/DeathsJob';
+import CollectedCoinsJob from '../app/jobs/CollectedCoinsJob';
+import killedMonstersJob from '../app/jobs/killedMonstersJob';
 
-const jobs = [CollectedCoins];
+const jobs = [CollectedCoinsJob, DeathsJob, killedMonstersJob];
 
 class Queue {
   constructor() {
@@ -28,10 +28,12 @@ class Queue {
   }
 
   processQueue() {
+    console.time('Processo Queue');
     jobs.forEach(job => {
       const { bee, handle } = this.queues[job.key];
       bee.on('failed', this.handleFailure).process(handle);
     });
+    console.timeEnd('Processo Queue');
   }
 
   handleFailure(job, err) {

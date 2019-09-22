@@ -9,12 +9,19 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      category_id: {
+      subcategory_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'categories_awards', key: 'id' },
+        references: { model: 'subcategory_awards', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
+      },
+      monster_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'monsters', key: 'id' },
+        onUpdate: 'SET NULL',
+        onDelete: 'SET NULL',
+        allowNull: true,
       },
       value: {
         type: Sequelize.DOUBLE(11),
