@@ -6,7 +6,6 @@ import KilledMonster from '../app/models/KilledMonster';
 import CollectedCoin from '../app/models/CollectedCoin';
 import Monster from '../app/models/Monster';
 import Deaths from '../app/models/Deaths';
-import SubcategoryAward from '../app/models/SubcategoryAward';
 import CategoryAward from '../app/models/CategoryAward';
 import Award from '../app/models/Award';
 import UserAward from '../app/models/UserAward';
@@ -18,7 +17,6 @@ const models = [
   KilledMonster,
   CollectedCoin,
   Deaths,
-  SubcategoryAward,
   CategoryAward,
   Award,
 ];

@@ -2,7 +2,7 @@ import AwardsBase from './AwardsBase';
 import CollectedCoinSchema from '../schemas/ColletedConins';
 import Award from '../models/Award';
 import UserAward from '../models/UserAward';
-import SubcategoryAward from '../models/SubcategoryAward';
+import CategoryAward from '../models/CategoryAward';
 
 const CATEGORIA_COINS = 1;
 
@@ -12,6 +12,7 @@ class ColletedCoinsJob extends AwardsBase {
   }
 
   handle = async ({ data }) => {
+    console.log(this.key);
     const { users } = data;
     const usersSchemas = await CollectedCoinSchema.find({
       user: { $in: users },
@@ -27,9 +28,9 @@ class ColletedCoinsJob extends AwardsBase {
             where: { user_id: userSchema.user },
           },
           {
-            model: SubcategoryAward,
+            model: CategoryAward,
             required: true,
-            where: { category_id: CATEGORIA_COINS },
+            where: { id: CATEGORIA_COINS },
           },
         ],
       });

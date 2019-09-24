@@ -9,6 +9,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      name: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

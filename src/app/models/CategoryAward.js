@@ -6,6 +6,7 @@ class CategoryAward extends Model {
       {
         name: Sequelize.STRING,
         description: Sequelize.STRING,
+        image: Sequelize.STRING,
       },
       {
         sequelize,

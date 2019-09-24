@@ -13,7 +13,7 @@ class Award extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.SubcategoryAward, { foreignKey: 'subcategory_id' });
+    this.belongsTo(models.CategoryAward, { foreignKey: 'category_id' });
     this.belongsTo(models.Monster, { foreignKey: 'monster_id' });
     this.hasMany(models.UserAward, { foreignKey: 'awards_id' });
   }

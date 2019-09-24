@@ -2,7 +2,7 @@ import AwardsBase from './AwardsBase';
 import DeathSchema from '../schemas/Deaths';
 import Award from '../models/Award';
 import UserAward from '../models/UserAward';
-import SubcategoryAward from '../models/SubcategoryAward';
+import CategoryAward from '../models/CategoryAward';
 
 const CATEGORIA_DEATHS = 3;
 
@@ -12,6 +12,7 @@ class DeathsJob extends AwardsBase {
   }
 
   handle = async ({ data }) => {
+    console.log(this.key);
     const { users } = data;
     const usersSchemas = await DeathSchema.find({
       user: { $in: users },
@@ -27,9 +28,9 @@ class DeathsJob extends AwardsBase {
             where: { user_id: userSchema.user },
           },
           {
-            model: SubcategoryAward,
+            model: CategoryAward,
             required: true,
-            where: { category_id: CATEGORIA_DEATHS },
+            where: { id: CATEGORIA_DEATHS },
           },
         ],
       });

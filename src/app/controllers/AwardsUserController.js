@@ -1,5 +1,4 @@
 import Award from '../models/Award';
-import SubcategoryAward from '../models/SubcategoryAward';
 import CategoryAward from '../models/CategoryAward';
 import UserAward from '../models/UserAward';
 
@@ -10,23 +9,32 @@ class AwardsUserController {
 
     const awards = await Award.findAll({
       where: {},
+      // attributes: ['id', 'value'],
       include: [
         {
-          model: SubcategoryAward,
+          model: CategoryAward,
           required: true,
-          include: [
-            {
-              model: CategoryAward,
-              required: true,
-            },
+          // where: { id: 3 },
+          // attributes: [],
+          group: [
+            // 'id',
+            // , 'name', 'description'
           ],
         },
         {
           model: UserAward,
           required: false,
           where: { user_id: id },
+          // attributes: [],
+          // group: ['id', 'user_id', 'awards_id'],
         },
       ],
+      // group: [
+      //   'Award.id',
+      //   'Award.value',
+      //   'CategoryAward.id',
+      //   'CategoryAward.name',
+      // ],
     });
 
     return res.json(awards);

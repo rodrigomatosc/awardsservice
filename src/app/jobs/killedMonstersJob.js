@@ -1,8 +1,8 @@
 import AwardsBase from './AwardsBase';
 import KilledMonstersSchema from '../schemas/KilledMonsters';
 import UserAward from '../models/UserAward';
-import SubcategoryAward from '../models/SubcategoryAward';
 import Award from '../models/Award';
+import CategoryAward from '../models/CategoryAward';
 
 const CATEGORIA_MONSTERS = 2;
 
@@ -12,6 +12,7 @@ class KilledMonstersJob extends AwardsBase {
   }
 
   handle = async ({ data }) => {
+    console.log(this.key);
     const { usersAndMonsters } = data;
 
     usersAndMonsters.forEach(async userAndMonster => {
@@ -19,9 +20,9 @@ class KilledMonstersJob extends AwardsBase {
         where: { monster_id: userAndMonster.monster },
         include: [
           {
-            model: SubcategoryAward,
+            model: CategoryAward,
             required: true,
-            where: { category_id: CATEGORIA_MONSTERS },
+            where: { id: CATEGORIA_MONSTERS },
           },
           {
             model: UserAward,

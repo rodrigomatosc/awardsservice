@@ -9,9 +9,9 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      subcategory_id: {
+      category_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'subcategory_awards', key: 'id' },
+        references: { model: 'category_awards', key: 'id' },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
         allowNull: false,
