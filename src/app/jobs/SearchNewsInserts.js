@@ -47,7 +47,7 @@ class SearchNewsInserts {
     let users = [];
 
     // Salvando no mongo os ids
-    coins.forEach(async coin => {
+    for (let coin of coins) {
       lastIdInserted = lastIdInserted < coin.id ? coin.id : lastIdInserted;
       users.push(coin.user_id);
       await CollectedCoinSchema.findOneAndUpdate(
@@ -55,7 +55,7 @@ class SearchNewsInserts {
         { $inc: { value: coin.value } },
         { upsert: true, new: true }
       );
-    });
+    }
 
     // Inserindo os dados no Redis
     if (coins.length > 0) {
@@ -84,7 +84,7 @@ class SearchNewsInserts {
     let usersAndMonsters = [];
 
     // Salvando no mongo os ids
-    murders.forEach(async murder => {
+    for (let murder of murders) {
       lastIdInserted = lastIdInserted < murder.id ? murder.id : lastIdInserted;
       usersAndMonsters.push({
         user: murder.user_id,
@@ -96,7 +96,7 @@ class SearchNewsInserts {
         { $inc: { value: 1 } },
         { upsert: true, new: true }
       );
-    });
+    }
 
     // Inserindo os dados no Redis
     if (murders.length > 0) {
@@ -125,17 +125,18 @@ class SearchNewsInserts {
     const deaths = await Deaths.findAll({ where, limit: 1000 });
     let lastIdInserted = 0;
     let users = [];
+    let values = [];
 
     // Salvando no mongo os ids
-    deaths.forEach(async death => {
+    for (let death of deaths) {
       lastIdInserted = lastIdInserted < death.id ? death.id : lastIdInserted;
       users.push(death.user_id);
-      await DeathsSchema.findOneAndUpdate(
+      const teste = await DeathsSchema.findOneAndUpdate(
         { user: death.user_id },
         { $inc: { value: 1 } },
         { upsert: true, new: true }
       );
-    });
+    }
 
     // Inserindo os dados no Redis
     if (deaths.length > 0) {
